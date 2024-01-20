@@ -131,6 +131,6 @@ class SiteController extends Controller
     }
 
     public function actionOfertas(){
-        return $this->render('ofertas');
+        return $this->render('comércios');
     }
 }

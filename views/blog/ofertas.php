@@ -1,9 +1,18 @@
 <?php
-/** @var yii\web\View $this */
-?>
-<h1>blog/ofertas</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use yii\helpers\Html;
+
+$this->title = 'Ofertas';
+//$this->params['breadcrumbs'][] = $this->title;
+
+?>
+
+<div class="site-ofertas">
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        This is the Ofertas page. You may modify the following file to customize its content:
+    </p>
+
+    <code><?= __FILE__ ?></code>
+</div>
