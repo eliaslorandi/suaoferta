@@ -14,7 +14,7 @@ class m240119_172319_create_arquivo_table extends Migration
     {
         $this->createTable('{{%arquivo}}', [
             'id' => $this->primaryKey(),
-            'nome' => $this->string(255)->notNull(),
+            'nome' => $this->string(100)->notNull(),
             'base_url' => $this->string()->notNull(),
             'mime_type' => $this->string()->notNull(),
         ]);

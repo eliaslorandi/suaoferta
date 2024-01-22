@@ -14,7 +14,7 @@ class m240119_172158_create_oferta_table extends Migration
     {
         $this->createTable('{{%oferta}}', [
             'id' => $this->primaryKey(),
-            'nome' => $this->string(255)->notNull(),
+            'nome' => $this->string(100)->notNull(),
             'descricao' => $this->text(),
         ]);
     }
