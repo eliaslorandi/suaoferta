@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  */
 class ComercioLogin extends ActiveRecord implements IdentityInterface
 {
+    
     /**
      * {@inheritdoc}
      */
