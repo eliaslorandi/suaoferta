@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /** @var app\models\Oferta $model */
 
 $this->title = 'Create Oferta';
-$this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="oferta-create">
 
