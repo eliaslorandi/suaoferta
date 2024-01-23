@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Oferta';
+$this->title = 'Ofertas';
 //$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="site-oferta">
+<div class="site-ofertas">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
