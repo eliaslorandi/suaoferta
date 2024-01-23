@@ -12,7 +12,7 @@ use Yii;
  * @property string $base_url
  * @property string $mime_type
  *
- * @property ImagemOferta[] $imagemOfertas
+ * @property ImagemOferta[] $imagemOferta
  */
 class Arquivo extends \yii\db\ActiveRecord
 {
@@ -54,7 +54,7 @@ class Arquivo extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getImagemOfertas()
+    public function getImagemOferta()
     {
         return $this->hasMany(ImagemOferta::class, ['arquivo_id' => 'id']);
     }

@@ -11,7 +11,7 @@ $this->title = 'Comércios';
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        This is the Ofertas page. You may modify the following file to customize its content:
+        deve conter a lista de todos os comercios, com filtro por categoria
     </p>
 
     <code><?= __FILE__ ?></code>

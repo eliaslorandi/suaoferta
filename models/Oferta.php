@@ -11,7 +11,7 @@ use Yii;
  * @property string $nome
  * @property string|null $descricao
  *
- * @property ImagemOferta[] $imagemOfertas
+ * @property ImagemOferta[] $imagemOferta
  */
 class Oferta extends \yii\db\ActiveRecord
 {
@@ -52,7 +52,7 @@ class Oferta extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getImagemOfertas()
+    public function getImagemOferta()
     {
         return $this->hasMany(ImagemOferta::class, ['oferta_id' => 'id']);
     }
