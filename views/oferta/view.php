@@ -7,8 +7,8 @@ use yii\widgets\DetailView;
 /** @var app\models\Oferta $model */
 
 $this->title = $model->id;
-// $this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Ofertas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="oferta-view">
