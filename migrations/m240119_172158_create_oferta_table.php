@@ -21,14 +21,14 @@ class m240119_172158_create_oferta_table extends Migration
 
         // Adiciona o índice na coluna user_id
         $this->createIndex(
-            'idx-oferta-user_id',
+            '{{idx-oferta-user_id}}',
             '{{%oferta}}',
             'user_id'
         );
 
         // Adiciona a chave estrangeira
         $this->addForeignKey(
-            'fk-oferta-user_id',
+            '{{fk-oferta-user_id}}',
             '{{%oferta}}',
             'user_id',
             '{{%user}}',

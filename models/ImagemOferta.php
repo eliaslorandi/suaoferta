@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "imagem_oferta".
@@ -14,7 +15,7 @@ use Yii;
  * @property Arquivo $arquivo
  * @property Oferta $oferta
  */
-class ImagemOferta extends \yii\db\ActiveRecord
+class ImagemOferta extends ActiveRecord
 {
     /**
      * {@inheritdoc}
