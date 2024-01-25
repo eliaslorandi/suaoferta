@@ -6,13 +6,16 @@ use Yii;
 use yii\base\Model;
 use app\models\User;
 
-class SignupForm extends Model {
+class SignupForm extends Model
+{
 
     public $username;
     public $email;
     public $password;
+    public $estabelecimento;
 
-    public function rules() {
+    public function rules()
+    {
         return [
             ['username', 'trim'],
             ['username', 'required'],
@@ -25,10 +28,14 @@ class SignupForm extends Model {
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This email address has already been taken.'],
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            ['estabelecimento', 'trim'],
+            ['estabelecimento', 'required'],
+            ['estabelecimento', 'string', 'min' => 2, 'max' => 255],
         ];
     }
 
-    public function signup() {
+    public function signup()
+    {
         if (!$this->validate()) {
             return null;
         }
@@ -36,10 +43,10 @@ class SignupForm extends Model {
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->estabelecimento = $this->estabelecimento;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         return $user->save();
     }
-
 }

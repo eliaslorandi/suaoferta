@@ -10,6 +10,20 @@ use yii\bootstrap5\ActiveForm;
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
             <?= $form->field($model, 'email') ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
+            <!-- Novo campo para selecionar opção de estabelecimento -->
+            <?= $form->field($model, 'estabelecimento')->dropDownList(
+                [
+                    'Mercado' =>        'Mercado',
+                    'Cafeteria' =>      'Cafeteria',
+                    'Restaurante' =>    'Restaurante',
+                    'Açougue' =>        'Açougue',
+                    'Barbearia' =>      'Barbearia',
+                    'Cabelereiro(a)' => 'Cabelereiro(a)',
+                    'Farmácia' =>       'Farmácia',
+                    'Estética' =>       'Estética',
+                ],
+                ['prompt' => 'Selecione uma opção']
+            ) ?>
             <div class="form-group">
                 <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary']) ?>
             </div>
