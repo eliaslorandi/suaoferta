@@ -40,9 +40,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Ofertas', 'url' => ['/comercio/index']],
+            ['label' => 'Ofertas', 'url' => ['/oferta/index']],
             ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
-            ['label' => 'Nova Oferta', 'url' => ['/oferta/index']],
+            ['label' => 'Nova Oferta', 'url' => ['/oferta/create']],
             ['label' => 'Crie Sua Conta', 'url' => ['/site/signup']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
