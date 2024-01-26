@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
-use app\models\Oferta;
-use app\models\OfertaSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use app\models\Oferta;
+use app\models\OfertaSearch;
+//use GuzzleHttp\Psr7\UploadedFile;
 
 /**
  * OfertaController implements the CRUD actions for Oferta model.
@@ -70,8 +73,12 @@ class OfertaController extends Controller
         $model = new Oferta();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
+                if ($model->save()) {
+                    $model->saveImagemOferta();
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
