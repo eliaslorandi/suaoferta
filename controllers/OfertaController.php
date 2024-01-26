@@ -76,7 +76,7 @@ class OfertaController extends Controller
             if ($model->load($this->request->post())) {
                 $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
                 if ($model->save()) {
-                    $model->saveImagemOferta();
+                    $model->saveImagem();
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
             }
