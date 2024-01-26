@@ -1,0 +1,191 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 26-Jan-2024 às 17:53
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `suaoferta`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `arquivo`
+--
+
+CREATE TABLE `arquivo` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `base_url` varchar(255) NOT NULL,
+  `mime_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `imagem_oferta`
+--
+
+CREATE TABLE `imagem_oferta` (
+  `id` int(11) NOT NULL,
+  `oferta_id` int(11) NOT NULL,
+  `arquivo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `migration`
+--
+
+CREATE TABLE `migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `migration`
+--
+
+INSERT INTO `migration` (`version`, `apply_time`) VALUES
+('m000000_000000_base', 1706185580),
+('m240115_170023_user_table', 1706277751),
+('m240119_172158_create_oferta_table', 1706277751),
+('m240119_172319_create_arquivo_table', 1706277751),
+('m240119_173835_create_imagem_oferta_table', 1706277752);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `oferta`
+--
+
+CREATE TABLE `oferta` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `estabelecimento` varchar(50) DEFAULT NULL,
+  `auth_key` varchar(32) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT 10,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `verification_token` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `estabelecimento`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`) VALUES
+(1, 'admin', NULL, 'FzUvFd4gWUunM00i4NZ35ioKyC_qOpIU', '$2y$13$x3XLV7XoDE9ikIP1uqQUQeHo2peybhwI5NNDWC5Zw0YtPn2XcuANe', NULL, 'admin@gmail.com', 10, 1579751199, 1579751199, 'CAp88Usjux4EInTX0BajYWvomEyGcUtI_1579751199');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `arquivo`
+--
+ALTER TABLE `arquivo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `imagem_oferta`
+--
+ALTER TABLE `imagem_oferta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx-imagem_oferta-oferta_id` (`oferta_id`),
+  ADD KEY `idx-imagem_oferta-arquivo_id` (`arquivo_id`);
+
+--
+-- Índices para tabela `migration`
+--
+ALTER TABLE `migration`
+  ADD PRIMARY KEY (`version`);
+
+--
+-- Índices para tabela `oferta`
+--
+ALTER TABLE `oferta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx-user-username` (`username`),
+  ADD UNIQUE KEY `idx-user-email` (`email`),
+  ADD UNIQUE KEY `idx-user-password_reset_token` (`password_reset_token`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `arquivo`
+--
+ALTER TABLE `arquivo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `imagem_oferta`
+--
+ALTER TABLE `imagem_oferta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `oferta`
+--
+ALTER TABLE `oferta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `imagem_oferta`
+--
+ALTER TABLE `imagem_oferta`
+  ADD CONSTRAINT `fk-imagem_oferta-arquivo_id` FOREIGN KEY (`arquivo_id`) REFERENCES `arquivo` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk-imagem_oferta-oferta_id` FOREIGN KEY (`oferta_id`) REFERENCES `oferta` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
