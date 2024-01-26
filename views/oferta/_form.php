@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'arquivoImagem')->fileInput() //versoes antes de 2.0.8 tem que add uo comentado
+    <?= $form->field($model, 'arquivoImagem')->fileInput()
     ?>
 
     <div class="form-group">

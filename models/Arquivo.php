@@ -58,4 +58,9 @@ class Arquivo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ImagemOferta::class, ['arquivo_id' => 'id']);
     }
+
+    public function absoluteUrl()
+    {
+        return $this->base_url . '/' . $this->name;
+    }
 }
