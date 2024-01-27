@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "arquivo".
@@ -14,7 +15,7 @@ use Yii;
  *
  * @property ImagemOferta[] $imagemOferta
  */
-class Arquivo extends \yii\db\ActiveRecord
+class Arquivo extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -61,6 +62,6 @@ class Arquivo extends \yii\db\ActiveRecord
 
     public function absoluteUrl()
     {
-        return $this->base_url . '/' . $this->name;
+        return $this->base_url . '/' . $this->nome;
     }
 }

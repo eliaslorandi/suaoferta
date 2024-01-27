@@ -27,7 +27,7 @@ $this->title = 'Ofertas';
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'nome',
             'descricao:ntext',
             [

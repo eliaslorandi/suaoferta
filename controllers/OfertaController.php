@@ -25,7 +25,7 @@ class OfertaController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -100,7 +100,12 @@ class OfertaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
+            if ($model->save()) {
+                $model->saveImagem();
+            }
+            Yii::$app->session->SetFlash(key: 'success', value: 'Oferta atualizada com sucesso!');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

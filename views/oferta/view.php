@@ -32,6 +32,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nome',
             'descricao:ntext',
+            [ //exibir imagem
+                'label' => 'Imagem',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    /**
+                     * @var $model \app\models\Oferta
+                     */
+                    if (!$model->hasImagem()) {
+                        return null;
+                    }
+                    $imagemHtml = "";
+                    foreach ($model->imagem as $imagem) {
+                        $imagemHtml .= Html::img($imagem->arquivo->AbsoluteUrl(), [
+                            'alt' => 'Image demonstration',
+                            'height' => '200',
+                            'class' => 'project-view__image'
+                        ]); //base_url . '/' . $image->file->name);
+                    }
+                    return $imagemHtml;
+                }
+            ]
         ],
     ]) ?>
 
