@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 
 /**
@@ -12,9 +13,9 @@ use yii\helpers\FileHelper;
  * @property string $nome
  * @property string|null $descricao
  *
- * @property ImagemOferta[] $imagemOferta
+ * @property ImagemOferta[] $imagem
  */
-class Oferta extends \yii\db\ActiveRecord
+class Oferta extends ActiveRecord
 {
 
     /**
@@ -60,12 +61,17 @@ class Oferta extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getImagemOferta()
+    public function getImagem()
     {
         return $this->hasMany(ImagemOferta::class, ['oferta_id' => 'id']);
     }
 
-    public function saveImagem()//4 etapas: criar um registo na tabela file, criar um registo na tabela project_image com id, 
+    public static function find()
+    {
+        return new OfertaQuery(get_called_class());
+    }
+
+    public function saveImagem()//4 etapas: criar um registo na tabela arquivo, criar um registo na tabela imagem_oferta com id, 
     {                           //salvar a imagem no disco, agrupar estas 3 etapas numa transação
 
         Yii::$app->db->transaction(function ($db) {
@@ -77,7 +83,8 @@ class Oferta extends \yii\db\ActiveRecord
             $arquivo = new Arquivo();
             $arquivo->nome = uniqid(true) . '.' . $this->arquivoImagem->extension;
             $arquivo->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['ofertas']);
-            $arquivo->mime_type = FileHelper::getMimeType($this->arquivoImagem->tempName);
+            $arquivo->mime_type = ($this->arquivoImagem->tempName);
+            //$arquivo->mime_type = FileHelper::getMimeType($this->arquivoImagem->tempName);
             $arquivo->save();
 
             // criar registro de imagem do projeto na tabela imagem_oferta
@@ -92,4 +99,10 @@ class Oferta extends \yii\db\ActiveRecord
             }
         });
     }
+
+    public function hasImagem()
+    {
+        return count($this->imagem) > 0;
+    }
+
 }
