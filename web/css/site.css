@@ -84,5 +84,10 @@ a.desc:after {
 }
 
 .form-group {
+    margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.project-view__imagem, .project-view__imagem{
+    margin: 10px;
 }

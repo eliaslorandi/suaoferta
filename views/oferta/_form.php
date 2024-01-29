@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
         <?=  Html::img($imagem->arquivo->AbsoluteUrl(), [
             'alt' => 'Imagem da oferta',
             'height' => '200',
-            'class' => 'project-view__imagem'
+            'class' => 'project-form__imagem'
         ]); ?>
     <?php endforeach; ?>
 
