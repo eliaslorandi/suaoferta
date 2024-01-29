@@ -84,5 +84,15 @@ a.desc:after {
 }
 
 .form-group {
+    margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+.oferta-view__imagem, .oferta-form__imagem{
+    display: block;
+    margin: 10px;    
+}
+
+.oferta-form__imagem-container{
+    margin-bottom: 16px;
 }

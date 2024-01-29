@@ -7,6 +7,7 @@ use app\models\Oferta;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use app\models\ImagemOferta;
 use app\models\OfertaSearch;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
@@ -31,6 +32,7 @@ class OfertaController extends Controller
                     'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
+                        'excluir-imagem-oferta' => ['POST'],
                     ],
                 ],
                 'access' => [
@@ -111,7 +113,7 @@ class OfertaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
             if ($model->save()) {
@@ -138,6 +140,36 @@ class OfertaController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionExcluirImagemOferta()
+    {
+        $imagem = ImagemOferta::findOne($this->request->post('id'));
+        if(!$imagem){
+            throw new NotFoundHttpException('Imagem não encontrada');
+        }
+        if($imagem->arquivo->delete()){
+            $path = Yii::$app->params['uploads']['ofertas'] . '/' . $imagem->arquivo->nome;
+            unlink($path);
+        }
+
+        // $imagem = ImagemOferta::findOne($id);
+        // if (!$imagem) {
+        //     throw new NotFoundHttpException('Imagem não encontrada');
+        // }
+        // if ($imagem->arquivo->delete()) {
+        //     $path = Yii::getAlias('@webroot') . Yii::$app->params['uploads']['ofertas'] . '/' . $imagem->arquivo->nome;
+        //     if (file_exists($path)) {
+        //         unlink($path);
+        //     }
+        //     $imagem->delete();
+        //     Yii::$app->session->setFlash('success', 'Imagem excluída com sucesso.');
+        // } else {
+        //     Yii::$app->session->setFlash('error', 'Erro ao excluir a imagem.');
+        // }
+
+        // return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+
     }
 
     /**
