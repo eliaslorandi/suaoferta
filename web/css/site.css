@@ -88,6 +88,11 @@ a.desc:after {
     margin-bottom: 1rem;
 }
 
-.project-view__imagem, .project-view__imagem{
-    margin: 10px;
+.oferta-view__imagem, .oferta-form__imagem{
+    display: block;
+    margin: 10px;    
+}
+
+.oferta-form__imagem-container{
+    margin-bottom: 16px;
 }
