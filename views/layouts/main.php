@@ -42,8 +42,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Início', 'url' => ['/site/index']],
             ['label' => 'Ofertas', 'url' => ['/oferta/index']],
             ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
-            ['label' => 'Nova Oferta', 'url' => ['/oferta/create']],
-            ['label' => 'Crie Sua Conta', 'url' => ['/site/signup']],
+            //['label' => 'Nova Oferta', 'url' => ['/oferta/create']],
+            //['label' => 'Crie Sua Conta', 'url' => ['/site/signup']],
+            
+            !Yii::$app->user->isGuest
+                ? ['label' => 'Nova oferta', 'url' => ['/oferta/create']]
+                : '',
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'

@@ -5,6 +5,6 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'uploads' => [
-        'ofertas' => '@app/web/uploads/ofertas',
+        'ofertas' => 'uploads/ofertas',
     ],
 ];
