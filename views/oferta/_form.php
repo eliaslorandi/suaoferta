@@ -16,8 +16,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descricao')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'arquivoImagem')->fileInput()
-    ?>
+    <?= $form->field($model, 'arquivoImagem')->fileInput()?>
+
+    <?php foreach($model->imagem as $imagem): ?>
+        <?=  Html::img($imagem->arquivo->AbsoluteUrl(), [
+            'alt' => 'Imagem da oferta',
+            'height' => '200',
+            'class' => 'project-view__imagem'
+        ]); ?>
+    <?php endforeach; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

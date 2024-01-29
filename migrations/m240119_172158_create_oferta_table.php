@@ -32,9 +32,7 @@ class m240119_172158_create_oferta_table extends Migration
     //         '{{%oferta}}',
     //         'user_id',
     //         '{{%user}}',
-    //         'id',
-    //         'CASCADE',
-    //         'CASCADE'
+    //         'id',       
     //     );
     }
 

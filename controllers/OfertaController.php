@@ -3,12 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 use app\models\Oferta;
+use yii\web\Controller;
+use yii\web\UploadedFile;
+use yii\filters\VerbFilter;
 use app\models\OfertaSearch;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
+use Symfony\Component\VarDumper\VarDumper;
+
 //use GuzzleHttp\Psr7\UploadedFile;
 
 /**
@@ -28,6 +31,15 @@ class OfertaController extends Controller
                     'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
+                    ],
+                ],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ]
                     ],
                 ],
             ]
@@ -99,14 +111,14 @@ class OfertaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
             if ($model->save()) {
                 $model->saveImagem();
+                Yii::$app->session->SetFlash(key: 'success', value: 'Oferta atualizada com sucesso!');
+                return $this->redirect(['view', 'id' => $model->id]);
             }
-            Yii::$app->session->SetFlash(key: 'success', value: 'Oferta atualizada com sucesso!');
-            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
