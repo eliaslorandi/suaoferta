@@ -1,0 +1,15 @@
+<?php foreach ($model->imagem as $imagem) : ?>
+        <div id="oferta-form__imagem-container-<?= $imagem->id ?>" class="oferta-form__imagem-container">
+            <?= Html::img($imagem->arquivo->AbsoluteUrl(), [
+                'alt' => 'Imagem da oferta',
+                'height' => '200',
+                'class' => 'oferta-form__imagem'
+            ]); ?>
+
+            <?= Html::button('Excluir', [
+                'class' => 'btn btn-danger btn-excluir-imagem',
+                'data-imagem-oferta-id' => $imagem->id
+            ]) ?>
+            <div id="oferta-form__imagem-error-message-<?= $imagem->id ?>" class="text-danger"></div>
+        </div>
+<?php endforeach; ?>

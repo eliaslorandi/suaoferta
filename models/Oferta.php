@@ -71,7 +71,7 @@ class Oferta extends ActiveRecord
         return new OfertaQuery(get_called_class());
     }
 
-    public function saveImagem()//4 etapas: criar um registo na tabela arquivo, criar um registo na tabela imagem_oferta com id, 
+    public function saveImagem() //4 etapas: criar um registo na tabela arquivo, criar um registo na tabela imagem_oferta com id, 
     {                           //salvar a imagem no disco, agrupar estas 3 etapas numa transação
 
         Yii::$app->db->transaction(function ($db) {
@@ -80,22 +80,23 @@ class Oferta extends ActiveRecord
              * @var $db \yii\db\Connection
              */
 
-            $arquivo = new Arquivo();
-            $arquivo->nome = uniqid(true) . '.' . $this->arquivoImagem->extension;
-            $arquivo->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['ofertas']);
-            $arquivo->mime_type = ($this->arquivoImagem->tempName);
-            //$arquivo->mime_type = FileHelper::getMimeType($this->arquivoImagem->tempName);
-            $arquivo->save();
+            if ($this->arquivoImagem !== null) {
+                $arquivo = new Arquivo();
+                $arquivo->nome = uniqid(true) . '.' . $this->arquivoImagem->extension;
+                $arquivo->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['ofertas']);
+                $arquivo->mime_type = FileHelper::getMimeType($this->arquivoImagem->tempName);
+                $arquivo->save();
 
-            // criar registro de imagem do projeto na tabela imagem_oferta
-            $imagemOferta = new ImagemOferta();
-            $imagemOferta->oferta_id = $this->id;
-            $imagemOferta->arquivo_id = $arquivo->id;
-            $imagemOferta->save();
+                // criar registro de imagem do projeto na tabela imagem_oferta
+                $imagemOferta = new ImagemOferta();
+                $imagemOferta->oferta_id = $this->id;
+                $imagemOferta->arquivo_id = $arquivo->id;
+                $imagemOferta->save();
 
-            //if para caso der erro no upload da imagem
-            if (!$this->arquivoImagem->saveAs(Yii::$app->params['uploads']['ofertas'] . '/' . $arquivo->nome)) {
-                $db->transaction->rollBack();
+                //if para caso der erro no upload da imagem
+                if (!$this->arquivoImagem->saveAs(Yii::$app->params['uploads']['ofertas'] . '/' . $arquivo->nome)) {
+                    $db->rollBack();
+                }
             }
         });
     }
@@ -104,5 +105,4 @@ class Oferta extends ActiveRecord
     {
         return count($this->imagem) > 0;
     }
-
 }

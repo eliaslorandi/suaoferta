@@ -31,7 +31,7 @@ $this->title = 'Ofertas';
             'nome',
             'descricao:ntext',
             [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Oferta $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
