@@ -49,6 +49,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 ? ['label' => 'Nova oferta', 'url' => ['/oferta/create']]
                 : '',
             Yii::$app->user->isGuest
+                ? ['label' => 'Crie Sua Conta', 'url' => ['/site/signup']]
+                : '',
+            Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
