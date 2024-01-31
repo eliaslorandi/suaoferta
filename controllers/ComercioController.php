@@ -9,14 +9,14 @@ class ComercioController extends \yii\web\Controller
         return $this->render('index');
     }
 
-    public function actionOferta()
-    {
-        return $this->render('oferta');
-    }
-
     public function actionComercios()
     {
         return $this->render('comercios');
+    }
+
+    public function actionOfertasComercios()
+    {
+        return $this->render('ofertasComercios');
     }
     
 }

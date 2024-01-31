@@ -148,32 +148,11 @@ class OfertaController extends Controller
     public function actionExcluirImagemOferta()
     {
         $imagem = ImagemOferta::findOne($this->request->post('id'));
-        if(!$imagem){
+        if (!$imagem) {
             throw new NotFoundHttpException('Imagem não encontrada');
         }
         $imagem->arquivo->delete();
     }
-
-    public function actionTodasOfertas($id)
-{
-    $oferta = Oferta::findOne($id);
-
-    if (!$oferta) {
-        throw new NotFoundHttpException('Oferta não encontrada.');
-    }
-
-    Yii::$app->response->format = Response::FORMAT_JSON;
-
-    $imagens = [];
-    foreach ($oferta->imagem as $imagem) {
-        $imagens[] = [
-            'id' => $imagem->id,
-            'url' => $imagem->arquivo->AbsoluteUrl(),
-        ];
-    }
-
-    return $imagens;
-}
 
     /**
      * Finds the Oferta model based on its primary key value.
@@ -191,4 +170,9 @@ class OfertaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    public function actionSuasOfertas()
+    {
+        return $this->render('suasOfertas');
+    }
+    
 }
