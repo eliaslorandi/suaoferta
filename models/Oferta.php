@@ -83,7 +83,8 @@ class Oferta extends ActiveRecord
             if ($this->arquivoImagem !== null) {
                 $arquivo = new Arquivo();
                 $arquivo->nome = uniqid(true) . '.' . $this->arquivoImagem->extension;
-                $arquivo->base_url = Yii::$app->urlManager->createAbsoluteUrl(Yii::$app->params['uploads']['ofertas']);
+                $arquivo->path_url = Yii::$app->params['uploads']['ofertas'];
+                $arquivo->base_url = Yii::$app->urlManager->createAbsoluteUrl($arquivo->path_url);
                 $arquivo->mime_type = FileHelper::getMimeType($this->arquivoImagem->tempName);
                 $arquivo->save();
 
