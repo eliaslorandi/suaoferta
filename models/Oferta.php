@@ -51,6 +51,7 @@ class Oferta extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'user_id' => 'User ID', //adicionado manualmente para o teste passar
             'nome' => 'Nome',
             'descricao' => 'Descrição',
         ];

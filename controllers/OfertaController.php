@@ -88,7 +88,9 @@ class OfertaController extends Controller
         $model = new Oferta();
 
         if ($this->request->isPost) {
+
             if ($model->load($this->request->post())) {
+                $model->user_id = Yii::$app->user->id;
                 $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
                 if ($model->save()) {
                     $model->saveImagem();
