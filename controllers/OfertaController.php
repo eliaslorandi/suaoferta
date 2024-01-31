@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\web\Response;
 use app\models\Oferta;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -148,29 +149,29 @@ class OfertaController extends Controller
         if(!$imagem){
             throw new NotFoundHttpException('Imagem não encontrada');
         }
-        if($imagem->arquivo->delete()){
-            $path = Yii::$app->params['uploads']['ofertas'] . '/' . $imagem->arquivo->nome;
-            unlink($path);
-        }
-
-        // $imagem = ImagemOferta::findOne($id);
-        // if (!$imagem) {
-        //     throw new NotFoundHttpException('Imagem não encontrada');
-        // }
-        // if ($imagem->arquivo->delete()) {
-        //     $path = Yii::getAlias('@webroot') . Yii::$app->params['uploads']['ofertas'] . '/' . $imagem->arquivo->nome;
-        //     if (file_exists($path)) {
-        //         unlink($path);
-        //     }
-        //     $imagem->delete();
-        //     Yii::$app->session->setFlash('success', 'Imagem excluída com sucesso.');
-        // } else {
-        //     Yii::$app->session->setFlash('error', 'Erro ao excluir a imagem.');
-        // }
-
-        // return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
-
+        $imagem->arquivo->delete();
     }
+
+    public function actionTodasOfertas($id)
+{
+    $oferta = Oferta::findOne($id);
+
+    if (!$oferta) {
+        throw new NotFoundHttpException('Oferta não encontrada.');
+    }
+
+    Yii::$app->response->format = Response::FORMAT_JSON;
+
+    $imagens = [];
+    foreach ($oferta->imagem as $imagem) {
+        $imagens[] = [
+            'id' => $imagem->id,
+            'url' => $imagem->arquivo->AbsoluteUrl(),
+        ];
+    }
+
+    return $imagens;
+}
 
     /**
      * Finds the Oferta model based on its primary key value.
@@ -187,4 +188,5 @@ class OfertaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

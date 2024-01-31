@@ -10,6 +10,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $nome
+ * @property string $path_url
  * @property string $base_url
  * @property string $mime_type
  *
@@ -31,9 +32,9 @@ class Arquivo extends ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'base_url', 'mime_type'], 'required'],
+            [['nome', 'path_url', 'base_url', 'mime_type'], 'required'],
             [['nome'], 'string', 'max' => 100],
-            [['base_url', 'mime_type'], 'string', 'max' => 255],
+            [['path_url','base_url', 'mime_type'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,6 +46,7 @@ class Arquivo extends ActiveRecord
         return [
             'id' => 'ID',
             'nome' => 'Nome',
+            'path_url' => 'Path Url',
             'base_url' => 'Base Url',
             'mime_type' => 'Mime Type',
         ];
@@ -64,4 +66,12 @@ class Arquivo extends ActiveRecord
     {
         return $this->base_url . '/' . $this->nome;
     }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        //deletar do disco
+        unlink($this->path_url . '/' . $this->nome);
+    }
+
 }

@@ -17,6 +17,7 @@ class m240119_172319_create_arquivo_table extends Migration
             'nome' => $this->string(100)->notNull(),
             'base_url' => $this->string()->notNull(),
             'mime_type' => $this->string()->notNull(),
+            'path_url' => $this->string(),
         ]);
     }
 
