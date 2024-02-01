@@ -40,19 +40,20 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Ofertas', 'url' => ['/oferta/index']],
+            ['label' => 'Ofertas', 'url' => ['/comercio/ofertas-comercios']],
             ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
-            //['label' => 'Nova Oferta', 'url' => ['/oferta/create']],
-            //['label' => 'Crie Sua Conta', 'url' => ['/site/signup']],
-            
+
             !Yii::$app->user->isGuest
-                ? ['label' => 'Nova oferta', 'url' => ['/oferta/create']]
+                ? ['label' => 'Nova Oferta', 'url' => ['/oferta/create']]
+                : '',
+            !Yii::$app->user->isGuest
+                ? ['label' => 'Suas Ofertas', 'url' => ['/oferta/suas-ofertas']]
                 : '',
             Yii::$app->user->isGuest
                 ? ['label' => 'Crie Sua Conta', 'url' => ['/site/signup']]
                 : '',
             Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
+                ? ['label' => 'Login Comerciante', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
