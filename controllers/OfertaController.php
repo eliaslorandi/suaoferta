@@ -3,13 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Response;
+use app\models\ImagemOferta;
+use app\models\OfertaSearch;
 use app\models\Oferta;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
-use app\models\ImagemOferta;
-use app\models\OfertaSearch;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use Symfony\Component\VarDumper\VarDumper;
@@ -172,7 +171,11 @@ class OfertaController extends Controller
 
     public function actionSuasOfertas()
     {
-        return $this->render('suasOfertas');
+        $userId = Yii::$app->user->id;
+        $ofertasUsuario = Oferta::find()->where(['user_id' => $userId])->all();
+
+        return $this->render('suasOfertas', [
+            'ofertasUsuario' => $ofertasUsuario,
+        ]);
     }
-    
 }

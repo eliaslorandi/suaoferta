@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
-class ComercioController extends \yii\web\Controller
+use yii\web\Controller;
+use app\models\ImagemOferta;
+
+class ComercioController extends Controller
 {
     public function actionIndex()
     {
@@ -16,7 +19,11 @@ class ComercioController extends \yii\web\Controller
 
     public function actionOfertasComercios()
     {
-        return $this->render('ofertasComercios');
+        // Supondo que você tenha um modelo de ImagemOferta para recuperar os dados das imagens
+        $imagensOferta = ImagemOferta::find()->all();
+        //return var_dump($arquivos);
+        return $this->render('ofertasComercios', [
+            'imagensOferta' => $imagensOferta, // Passando os dados das imagens para a view
+        ]);
     }
-    
 }
