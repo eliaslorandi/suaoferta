@@ -7,11 +7,12 @@ use yii\bootstrap5\ActiveForm;
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'nomeComercio') ?>
+            <?= $form->field($model, 'username') ?>
             <?= $form->field($model, 'email') ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
-            <!-- Novo campo para selecionar opção de estabelecimento -->
-            <?= $form->field($model, 'estabelecimento')->dropDownList(
+            <!-- campo para selecionar opção de estabelecimento -->
+            <?= $form->field($model, 'categoriaComercio')->dropDownList(
                 [
                     'Mercado' =>        'Mercado',
                     'Cafeteria' =>      'Cafeteria',

@@ -1,18 +1,26 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Comércios';
-//$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="site-comercios">
+<div class="comercios-index">
+
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        deve conter a lista de todos os comercios, com filtro por categoria
-    </p>
+    <div class="filter">
+       
+    </div>
 
-    <code><?= __FILE__ ?></code>
+    <div class="comercios-list">
+        <h2>Lista de Comércios</h2>
+        <ul>
+            <?php foreach ($comercios as $comercio) : ?>
+                <li><?= $comercio->nomeComercio ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 </div>

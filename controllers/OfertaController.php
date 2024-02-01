@@ -3,14 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ImagemOferta;
-use app\models\OfertaSearch;
 use app\models\Oferta;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use app\models\ImagemOferta;
+use app\models\OfertaSearch;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use Symfony\Component\VarDumper\VarDumper;
 
 //use GuzzleHttp\Psr7\UploadedFile;
@@ -43,6 +44,27 @@ class OfertaController extends Controller
                             'roles' => ['@'],
                         ]
                     ],
+                    'class' => AccessControl::class,
+                'only' => ['update', 'delete'], // Ações que deseja controlar o acesso
+                'rules' => [
+                    [
+                        'actions' => ['update', 'delete'],
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            // Verificar se o usuário está logado
+                            if (!Yii::$app->user->isGuest) {
+                                // Verificar se o usuário possui permissão para editar/deletar esta oferta
+                                $ofertaId = Yii::$app->request->get('id');
+                                $oferta = Oferta::findOne($ofertaId);
+                                if ($oferta !== null && $oferta->user_id === Yii::$app->user->identity->id) {
+                                    return true; // Permite que o usuário edite/deleter sua própria oferta
+                                }
+                            }
+                            // Se não atender aos critérios acima, nega o acesso
+                            throw new ForbiddenHttpException('Você não tem permissão para executar esta ação.');
+                        },
+                    ],
+                ],
                 ],
             ]
         );
