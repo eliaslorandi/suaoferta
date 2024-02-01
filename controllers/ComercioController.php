@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\ImagemOferta;
+use app\models\User;
 
 class ComercioController extends Controller
 {
@@ -14,12 +15,22 @@ class ComercioController extends Controller
 
     public function actionComercios()
     {
-        return $this->render('comercios');
+        $comercios = user::find()->all();
+        return $this->render('comercios', [
+            'comercios' => $comercios,
+        ]);
+    }
+
+    public function actionEstabelecimentos()
+    {
+        $estabelecimentos = user::find()->all();
+        return $this->render('comercios', [
+            'estabelecimentos' => $estabelecimentos,
+        ]);
     }
 
     public function actionOfertasComercios()
     {
-        // Supondo que você tenha um modelo de ImagemOferta para recuperar os dados das imagens
         $imagensOferta = ImagemOferta::find()->all();
         //return var_dump($arquivos);
         return $this->render('ofertasComercios', [

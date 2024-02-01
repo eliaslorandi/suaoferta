@@ -14,8 +14,9 @@ class m240115_170023_user_table extends Migration
     {
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
+            'nomeComercio' => $this->string(255)->notNull(),
             'username' => $this->string(255)->notNull(),
-            'estabelecimento' => $this->string(50),
+            'categoriaComercio' => $this->string(50),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string(255)->notNull(),
             'password_reset_token' => $this->string(255),
