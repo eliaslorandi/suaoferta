@@ -21,6 +21,7 @@ use Symfony\Component\VarDumper\VarDumper;
  */
 class OfertaController extends Controller
 {
+
     /**
      * @inheritDoc
      */
@@ -45,26 +46,26 @@ class OfertaController extends Controller
                         ]
                     ],
                     'class' => AccessControl::class,
-                'only' => ['update', 'delete'], // Ações que deseja controlar o acesso
-                'rules' => [
-                    [
-                        'actions' => ['update', 'delete'],
-                        'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                            // Verificar se o usuário está logado
-                            if (!Yii::$app->user->isGuest) {
-                                // Verificar se o usuário possui permissão para editar/deletar esta oferta
-                                $ofertaId = Yii::$app->request->get('id');
-                                $oferta = Oferta::findOne($ofertaId);
-                                if ($oferta !== null && $oferta->user_id === Yii::$app->user->identity->id) {
-                                    return true; // Permite que o usuário edite/deleter sua própria oferta
+                    'only' => ['update', 'delete'], // Ações que deseja controlar o acesso
+                    'rules' => [
+                        [
+                            'actions' => ['update', 'delete'],
+                            'allow' => true,
+                            'matchCallback' => function ($rule, $action) {
+                                // Verificar se o usuário está logado
+                                if (!Yii::$app->user->isGuest) {
+                                    // Verificar se o usuário possui permissão para editar/deletar esta oferta
+                                    $ofertaId = Yii::$app->request->get('id');
+                                    $oferta = Oferta::findOne($ofertaId);
+                                    if ($oferta !== null && $oferta->user_id === Yii::$app->user->identity->id) {
+                                        return true; // Permite que o usuário edite/deleter sua própria oferta
+                                    }
                                 }
-                            }
-                            // Se não atender aos critérios acima, nega o acesso
-                            throw new ForbiddenHttpException('Você não tem permissão para executar esta ação.');
-                        },
+                                // Se não atender aos critérios acima, nega o acesso
+                                throw new ForbiddenHttpException('Você não tem permissão para executar esta ação.');
+                            },
+                        ],
                     ],
-                ],
                 ],
             ]
         );
@@ -170,7 +171,7 @@ class OfertaController extends Controller
     {
         $imagem = ImagemOferta::findOne($this->request->post('id'));
         if (!$imagem) {
-            throw new NotFoundHttpException('Imagem não encontrada');
+            throw new NotFoundHttpException('Imagem não encontrada.');
         }
         $imagem->arquivo->delete();
     }
@@ -188,16 +189,7 @@ class OfertaController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Página não existente.');
     }
 
-    public function actionSuasOfertas()
-    {
-        $userId = Yii::$app->user->id;
-        $ofertasUsuario = Oferta::find()->where(['user_id' => $userId])->all();
-
-        return $this->render('suasOfertas', [
-            'ofertasUsuario' => $ofertasUsuario,
-        ]);
-    }
 }

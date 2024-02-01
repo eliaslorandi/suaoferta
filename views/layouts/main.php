@@ -40,14 +40,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Ofertas', 'url' => ['/comercio/ofertas-comercios']],
+            ['label' => 'Ofertas', 'url' => ['/comercio/todas-ofertas']],
             ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
 
             !Yii::$app->user->isGuest
                 ? ['label' => 'Nova Oferta', 'url' => ['/oferta/create']]
                 : '',
             !Yii::$app->user->isGuest
-                ? ['label' => 'Suas Ofertas', 'url' => ['/oferta/suas-ofertas']]
+                ? ['label' => 'Suas Ofertas', 'url' => ['/oferta/index']]
                 : '',
             Yii::$app->user->isGuest
                 ? ['label' => 'Crie Sua Conta', 'url' => ['/site/signup']]

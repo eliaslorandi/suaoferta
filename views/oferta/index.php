@@ -10,9 +10,9 @@ use yii\grid\GridView;
 /** @var app\models\OfertaSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Ofertas';
-//$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Suas Ofertas';
 ?>
+
 <div class="oferta-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -32,7 +32,7 @@ $this->title = 'Ofertas';
             'descricao:ntext',
             [
                 'class' => ActionColumn::class,
-                'urlCreator' => function ($action, Oferta $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Oferta $model) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
