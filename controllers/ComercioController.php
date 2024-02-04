@@ -21,19 +21,11 @@ class ComercioController extends Controller
         ]);
     }
 
-    public function actionEstabelecimentos()
-    {
-        $estabelecimentos = user::find()->all();
-        return $this->render('comercios', [
-            'estabelecimentos' => $estabelecimentos,
-        ]);
-    }
-
-    public function actionOfertasComercios()
+    public function actionTodasOfertas()
     {
         $imagensOferta = ImagemOferta::find()->all();
         //return var_dump($arquivos);
-        return $this->render('ofertasComercios', [
+        return $this->render('todasOfertas', [
             'imagensOferta' => $imagensOferta, // Passando os dados das imagens para a view
         ]);
     }

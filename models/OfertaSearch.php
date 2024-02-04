@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Oferta;
+use Yii;
 
 /**
  * OfertaSearch represents the model behind the search form of `app\models\Oferta`.
@@ -40,9 +41,7 @@ class OfertaSearch extends Oferta
      */
     public function search($params)
     {
-        $query = Oferta::find();
-
-        // add conditions that should always apply here
+        $query = Oferta::find()->where(['user_id' => Yii::$app->user->id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,8 +50,6 @@ class OfertaSearch extends Oferta
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
