@@ -163,17 +163,37 @@ class OfertaController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        //excluir imagens
+        $this->actionExcluirImagemOferta($id);
 
         return $this->redirect(['index']);
     }
 
     public function actionExcluirImagemOferta()
     {
-        $imagem = ImagemOferta::findOne($this->request->post('id'));
-        if (!$imagem) {
-            throw new NotFoundHttpException('Imagem não encontrada.');
+        if ($this->request->isPost) {
+            $imagemId = $this->request->post('id');
+            $imagem = ImagemOFerta::findOne($imagemId);
+            if (!$imagem) {
+                throw new NotFoundHttpException('Imagem não encontrada.');
+            } else {
+                if ($imagem->arquivo->delete()) {
+                    $imagem->delete();
+                    return 'Imagem excluída com sucesso.';
+                } else {
+                    return 'Erro ao excluir imagem.';
+                }
+            }
+        } else {
+            throw new NotFoundHttpException('Ação não permitida.');
         }
-        $imagem->arquivo->delete();
+
+        // $imagem = ImagemOferta::findOne($this->request->post('id'));
+        // if (!$imagem) {
+        //     throw new NotFoundHttpException('Imagem não encontrada.');
+        // } else {
+        //     $imagem->arquivo->delete();
+        // }
     }
 
     /**
@@ -191,5 +211,4 @@ class OfertaController extends Controller
 
         throw new NotFoundHttpException('Página não existente.');
     }
-
 }
