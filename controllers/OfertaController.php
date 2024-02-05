@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Arquivo;
 use Yii;
 use app\models\Oferta;
 use yii\web\Controller;
@@ -165,8 +166,9 @@ class OfertaController extends Controller
         $this->findModel($id)->delete();
         //excluir imagens
         $this->actionExcluirImagemOferta($id);
+        $this->actionExcluirArquivo($id);
 
-        return $this->redirect(['index']);
+        return $this->redirect(['oferta/index']);
     }
 
     public function actionExcluirImagemOferta()
@@ -187,13 +189,23 @@ class OfertaController extends Controller
         } else {
             throw new NotFoundHttpException('Ação não permitida.');
         }
+    }
 
-        // $imagem = ImagemOferta::findOne($this->request->post('id'));
-        // if (!$imagem) {
-        //     throw new NotFoundHttpException('Imagem não encontrada.');
-        // } else {
-        //     $imagem->arquivo->delete();
-        // }
+    public function actionExcluirArquivo()
+    {
+        if ($this->request->isPost) {
+            $arquivoId = $this->request->post('id');
+            $arquivo = Arquivo::findOne($arquivoId);
+            if (!$arquivo) {
+                throw new NotFoundHttpException('Arquivo não encontrado.');
+            } else {
+                if ($arquivo->delete()) {
+                    return 'Arquivo excluído com sucesso.';
+                } else {
+                    return 'Erro ao excluir arquivo.';
+                }
+            }
+        }
     }
 
     /**

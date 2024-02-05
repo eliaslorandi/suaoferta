@@ -67,11 +67,4 @@ class Arquivo extends ActiveRecord
         return $this->base_url . '/' . $this->nome;
     }
 
-    public function afterDelete()
-    {
-        parent::afterDelete();
-        //deletar do disco
-        unlink($this->path_url . '/' . $this->nome);
-    }
-
 }
