@@ -29,7 +29,7 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'nome',
             'descricao:ntext',
             [ //exibir imagem
@@ -48,7 +48,7 @@ YiiAsset::register($this);
                             'alt' => 'Imagem da oferta',
                             'height' => '200',
                             'class' => 'oferta-view__imagem'
-                        ]); //base_url . '/' . $image->file->name);
+                        ]);
                     }
                     return $imagemHtml;
                 }

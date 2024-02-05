@@ -16,10 +16,10 @@ $this->title = 'Suas Ofertas';
 <div class="oferta-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <hr>
 
-    
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,10 +34,9 @@ $this->title = 'Suas Ofertas';
                 'class' => ActionColumn::class,
                 'urlCreator' => function ($action, Oferta $model) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
-
 
 </div>

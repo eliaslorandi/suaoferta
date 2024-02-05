@@ -107,4 +107,9 @@ class Oferta extends ActiveRecord
     {
         return count($this->imagem) > 0;
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
 }
