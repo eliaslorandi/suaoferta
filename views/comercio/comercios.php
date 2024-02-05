@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 
 $this->title = 'Comércios';
 
@@ -10,6 +9,7 @@ $this->title = 'Comércios';
 <div class="comercios-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <hr>
 
     <div class="filter">
        

@@ -40,7 +40,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Ofertas', 'url' => ['/comercio/todas-ofertas']],
+            ['label' => 'Ofertas', 'url' => ['/oferta/todas-ofertas']],
             ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
 
             !Yii::$app->user->isGuest
