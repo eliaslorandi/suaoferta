@@ -223,4 +223,12 @@ class OfertaController extends Controller
 
         throw new NotFoundHttpException('Página não existente.');
     }
+
+    public function actionTodasOfertas()
+    {
+        $ofertas = Oferta::find()->with('imagem')->all();
+        return $this->render('todasOfertas', [
+            'ofertas' => $ofertas,
+        ]);
+    }
 }

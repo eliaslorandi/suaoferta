@@ -2,9 +2,8 @@
 
 namespace app\controllers;
 
-use yii\web\Controller;
-use app\models\ImagemOferta;
 use app\models\User;
+use yii\web\Controller;
 
 class ComercioController extends Controller
 {
@@ -21,12 +20,4 @@ class ComercioController extends Controller
         ]);
     }
 
-    public function actionTodasOfertas()
-    {
-        $imagensOferta = ImagemOferta::find()->all();
-        //return var_dump($arquivos);
-        return $this->render('todasOfertas', [
-            'imagensOferta' => $imagensOferta, // Passando os dados das imagens para a view
-        ]);
-    }
 }

@@ -96,3 +96,8 @@ a.desc:after {
 .oferta-form__imagem-container{
     margin-bottom: 16px;
 }
+
+.todas-ofertas{
+    display: block;
+    margin-bottom: 50px;
+}
