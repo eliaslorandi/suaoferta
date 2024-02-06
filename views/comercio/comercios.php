@@ -12,15 +12,19 @@ $this->title = 'Comércios';
     <hr>
 
     <div class="filter">
-       
+
     </div>
 
-    <div class="comercios-list">
-        <h2>Lista de Comércios</h2>
+    <div class="categorias-comercios">
+    <?php foreach ($categorias as $categoria) : ?>
+        <h2><?= $categoria ?></h2>
         <ul>
-            <?php foreach ($comercios as $comercio) : ?>
+            <?php foreach ($comerciosPorCategoria[$categoria] as $comercio) : ?>
                 <li><?= $comercio->nomeComercio ?></li>
             <?php endforeach; ?>
         </ul>
-    </div>
+    <?php endforeach; ?>
+</div>
+
+
 </div>
