@@ -41,7 +41,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
             ['label' => 'Ofertas', 'url' => ['/oferta/todas-ofertas']],
-            ['label' => 'Comércios', 'url' => ['/comercio/comercios']],
+            ['label' => 'Comércios', 'url' => ['/comercio/index']],
 
             !Yii::$app->user->isGuest
                 ? ['label' => 'Nova Oferta', 'url' => ['/oferta/create']]
