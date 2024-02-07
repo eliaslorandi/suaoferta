@@ -11,41 +11,41 @@ $this->title = 'SUA OFERTA';
 
         <p class="lead"></p>
 
-        
+
     </div>
 
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4 mb-3">
-                <h2>Cliente</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4 mb-3">
                 <h2>Comerciante</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>
+                    Para utilizar o site e divulgar suas ofertas, você deve seguir algumas etapas simples. Primeiramente, 
+                    é necessário criar uma conta preenchendo todos os campos obrigatórios. Esses dados 
+                    são essenciais para garantir a visibilidade das postagens das ofertas pelos clientes. Após a criação 
+                    da conta, você deverá fazer o login para ter acesso às funcionalidades de criação, visualização e 
+                    edição das ofertas. É importante ressaltar que as ofertas são postadas como imagens, portanto, ao 
+                    criar uma oferta, você deve garantir que a imagem represente adequadamente o produto ou serviço oferecido, 
+                    a fim de atrair a atenção dos clientes de forma eficaz.
+                </p>
 
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <h2>Cliente</h2>
+
+                <p>Para você cliente que busca ofertas, o uso do site é simples e direto. Você pode navegar no site,
+                    pela barra superior, e visualizar as ofertas disponíveis e os comercios que estão cadastrados,
+                    sem a necessidade de criar uma conta.
+                </p>
+
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h2>Suporte</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>Em caso de dúvidas ou problemas, entre em contato conosco através do e-mail: eelias.lorandi@gmail.com
+                </p>
 
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
             </div>
         </div>
 
