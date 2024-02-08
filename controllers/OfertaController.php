@@ -163,13 +163,21 @@ class OfertaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        //excluir imagens
-        $this->actionExcluirImagemOferta($id);
-        $this->actionExcluirArquivo($id);
+        $oferta = $this->findModel($id);
+
+        // Verifica se há uma imagem associada à oferta na tabela de imagens
+        $imagem = ImagemOferta::findOne(['oferta_id' => $id]);
+
+        if ($imagem !== null) {
+            Yii::$app->session->setFlash('error', 'Esta oferta não pode ser excluída porque possui uma imagem associada.');
+        } else {
+            // Se não houver imagem associada à oferta, excluímos a oferta
+            $oferta->delete();
+        }
 
         return $this->redirect(['oferta/index']);
     }
+
 
     public function actionExcluirImagemOferta()
     {
