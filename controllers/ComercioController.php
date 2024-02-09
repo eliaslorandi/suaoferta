@@ -21,7 +21,7 @@ class ComercioController extends Controller
         }
 
         // Renderiza a view 'comercio/comercios.php' passando as categorias e os comércios agrupados por categoria
-        return $this->render('comercios', [
+        return $this->render('index', [
             'categorias' => $categorias,
             'comerciosPorCategoria' => $comerciosPorCategoria,
         ]);
@@ -31,7 +31,7 @@ class ComercioController extends Controller
     public function actionComercios()
     {
         $comercios = User::find()->all();
-        return $this->render('comercios', [
+        return $this->render('index', [
             'comercios' => $comercios,
         ]);
     }

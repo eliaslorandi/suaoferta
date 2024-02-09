@@ -6,7 +6,7 @@ $this->title = 'Comércios';
 
 ?>
 
-<div class="comercio-index">
+<div class="comercios-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <hr>
