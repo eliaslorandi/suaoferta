@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+
+$this->title = 'Crie Sua Conta';
 ?>
 <div class="site-signup">
     <div class="row">
