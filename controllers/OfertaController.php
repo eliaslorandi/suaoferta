@@ -144,7 +144,7 @@ class OfertaController extends Controller
             $model->arquivoImagem = UploadedFile::getInstance($model, 'arquivoImagem');
             if ($model->save()) {
                 $model->saveImagem();
-                Yii::$app->session->SetFlash(key: 'success', value: 'Oferta atualizada com sucesso!');
+                Yii::$app->session->SetFlash('success', 'Oferta atualizada com sucesso!');
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
