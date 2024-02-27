@@ -11,8 +11,8 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface {
 
     const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 10;
-    const STATUS_ACTIVE = 9;
+    //onst STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
 
     public static function tableName() {
         return '{{%user}}';
@@ -26,8 +26,8 @@ class User extends ActiveRecord implements IdentityInterface {
 
     public function rules() {
         return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -54,12 +54,12 @@ class User extends ActiveRecord implements IdentityInterface {
         ]);
     }
 
-    public static function findByVerificationToken($token) {
-        return static::findOne([
-                    'verification_token' => $token,
-                    'status' => self::STATUS_INACTIVE
-        ]);
-    }
+    // public static function findByVerificationToken($token) {
+    //     return static::findOne([
+    //                 'verification_token' => $token,
+    //                 'status' => self::STATUS_INACTIVE
+    //     ]);
+    //}
 
     public static function isPasswordResetTokenValid($token) {
         if (empty($token)) {
