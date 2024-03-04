@@ -1,1 +1,1 @@
-Acesso em: suaoferta.bludot.com.br
+Acesso em: https://suaoferta.bludot.com.br/
